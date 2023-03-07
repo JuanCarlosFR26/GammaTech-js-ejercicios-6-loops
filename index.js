@@ -1,3 +1,4 @@
+import { allCountries } from "./countries.js";
 
 // ## 💻 Ejercicios:Día 6
 
@@ -86,7 +87,7 @@ do {
 
 let str = '';
 for (let i = 1; i <= 7; i++) {
-    document.write(str.concat('#'.repeat(i) + '<br>'));
+    console.log(str.concat('#'.repeat(i)));
 }
 
 // 5. Usa un bucle para imprimir el siguiente patrón:
@@ -146,13 +147,19 @@ for (let i = 0; i <= 100; i++) {
 }
 
 // 9. Usa el bucle for para iterar de 0 a 100 e imprima los solo números primos
-// for (let i = 0; i <= 100; i++) {
-//     for (let j = 0; j <= 100; j++) {
-//         if(i % i === 0 && j % i === 0) {
+var texto=2
+  for (let i =3;i<=100;i=i+2){
+    var primo=true;
+    for(let j=3;j<=Math.sqrt(i);j=j+2){
+      if (i%j==0){
+        primo=false;
+        break;
+      }
+    }
+    if (primo) {texto += i + "<br>";}
+  }
+  console.log(texto);
 
-//         }
-//     }
-// }
 
 // 10. Usa el bucle for para iterar de 0 a 100 e imprima la suma de todos los números.
 
@@ -308,9 +315,11 @@ for(const country of countries) {
 //      ['Kenya', 'KEN', 5]
 //    ]
 //    ```
+let countryArr = [];
 for(const country of countries) {
-    console.log(`${country}, ${(country[0] + country[1] + country[2]).toUpperCase()}, ${country.length}`);
+    countryArr.push(`[${country}, ${(country[0] + country[1] + country[2]).toUpperCase()}, ${country.length}]`);
 }
+console.log(countryArr);
 
 // 7. En el array countries anterior, verifica si hay un país que contenga la palabra 'land'. Si hay países que contienen 'land', imprimelo cono array. Si no hay ningún país que contenga la palabra'land', imprima 'Todos estos países no tienen la palabra land'.
 
@@ -320,42 +329,98 @@ for(const country of countries) {
 let arrLand = [];
 for(const country of countries) {
     if(country.includes('land')) {
-        arrLand.push(country);
-    } else {
-        console.log('Todos estos países no tienen la palabra land');
+        arrLand.push(country)
+    } else if(arrLand === []) {
+        console.log('Todos estos países no tienen la palabra land')
     }
+
 }
 console.log(arrLand);
-
 
 // 8. En el array countries anterior, verifica si hay un país que termina con una subcadena (substring) 'ia'. Si hay países que terminan con 'ia', imprimelo como un array. Si no hay ningún país que contenga la palabra 'ia', imprime 'Estos países no terminan con ia'.
 
 //    ```sh
 //    ['Albania', 'Bolivia','Ethiopia']
 //    ```
+let arrIa = [];
+for (const country of countries) {
+    if(country.endsWith('ia')) {
+        arrIa.push(country);
+    } else if(arrIa === []) {
+        console.log('Estos países no terminan con ia')
+    }
+}
+console.log(arrIa);
 
 // 9. Usando el array countries anterior, encuentre el país que contiene la mayor cantidad de caracteres.
 
 //    ```sh
 //    Ethiopia
 //    ```
+let wordLen = '';
+for(const country of countries) {
+    if(country.length > wordLen.length) {
+        wordLen = country;
+    }
+}
+console.log(wordLen);
 
 // 10. Usando el array countries anterior, encuentre el país que contiene sólo 5 caracteres.
 
 //    ```sh
 //    ['Japan', 'Kenya']
 //    ```
+let arrFive = [];
+for(const country of countries) {
+    if(country.length === 5) {
+        arrFive.push(country);
+    }
+}
+console.log(arrFive);
 
 // 11. Encuentra la palabra más larga en el array webTechs
+let webLen = '';
+for(const web of webTechs) {
+    if(web.length > webLen.length) {
+        webLen = web;
+    }
+}
+console.log(webLen);
+
+
 // 12. Utiliza el array de webTechs para crear la el siguiente array de arrays:
 
 //    ```sh
 //    [["HTML", 4], ["CSS", 3],["JavaScript", 10],["React", 5],["Redux", 5],["Node", 4],["MongoDB", 7]]
 //    ```
+let arrWeb = [];
+for(const web of webTechs) {
+    arrWeb.push(`[${web}, ${web.length}]`);
+}
+console.log(arrWeb)
 
 // 13. Una aplicación creada con MongoDB, Express, React y Node se denomina MERN stack app. Crea el acrónimo MERN usando el array mernStack
+let mern = '';
+for(const word of mernStack) {
+    mern += (word[0]);
+}
+console.log(mern);
+
 // 14. Iterar a través del array, ["HTML", "CSS", "JS", "React", "Redux", "Node", "Express", "MongoDB"] usando el bucle for o el bucle for of e imprime los elementos.
+let arrTech = ["HTML", "CSS", "JS", "React", "Redux", "Node", "Express", "MongoDB"];
+for(const tech of arrTech) {
+    console.log(`${tech}`);
+}
+
 // 15. Este es un array de frutas, ['banana', 'orange', 'mango', 'lemon'] invierte el orden usando un bucle sin usar el método reverse().
+let fruits = ['banana', 'orange', 'mango', 'lemon'];
+let fruitsReverse = [];
+for(const fruit of fruits) {
+    fruitsReverse.unshift(fruit);
+}
+console.log(fruits);
+console.log(fruitsReverse);
+
 // 16. Imprime todos los elementos del array como se muestra a continuación:
 
 //    ```js
@@ -374,15 +439,80 @@ console.log(arrLand);
 //      EXPRESS
 //      MONGODB
 //    ```
+let arrTech2 = [[],[]];
+for(const tech of arrTech) {
+    if(arrTech2[0].length < 4) {
+        arrTech2[0].push(tech);
+    } else {
+        arrTech2[1].push(tech);
+    }
+}
+console.log(`[${arrTech2[0]}]\n[${arrTech2[1]}]`);
 
 // ### Ejercicios: Nivel 3
 
 // 1. Copia el array countries (Evita mutaciones)
+let anotherCountries = [].concat(countries);
+console.log(anotherCountries);
+
 // 2. Los arrays son mutables. Crea una copia del array que no modifique el original. Ordena la copia del array y guárdala en una variable sortedCountries
+let sortedCountries = anotherCountries.sort();
+console.log(sortedCountries);
+
 // 3. Ordena el array webTechs y el array mernStack
+let anotherWebs = [].concat(webTechs);
+let sortedWebs = anotherWebs.sort();
+console.log(webTechs);
+console.log(sortedWebs);
+
+let anotherMern = [].concat(mernStack);
+let sortedMern = anotherMern.sort()
+console.log(mernStack);
+console.log(sortedMern);
+
 // 4. Extrae todos los países que contengan la palabra 'land' del [array countries](/arrays/countries.js) e imprimela como un array
+let arrLand2 = [];
+for(const country of allCountries){
+    if(country.includes('land')) {
+        arrLand2.push(country);
+    }
+}
+console.log(arrLand2);
 // 5. Encuentra el país que contiene la mayor cantidad de caracteres en el [array countries](/arrays/countries.js)
+let myCountry = '';
+for(const country of allCountries) {
+    if(country.length > myCountry.length) {
+        myCountry = country;
+    }
+}
+console.log(myCountry);
 // 6. Extrae todos los países que contienen la palabra 'land' del [array countries](/arrays/countries.js) e imprimela como un array
+// Repetido
+
 // 7. Extrae todos los países que contengan solo cuatro caracters del [array countries](/arrays/countries.js) e impremela como un array
+let countryFour = [];
+for(const country of allCountries) {
+    if(country.length === 4) {
+        countryFour.push(country);
+    }
+}
+console.log(countryFour);
+
 // 8. Extrae todos los paíse que contengan dos o más palabras del [array countries](/arrays/countries.js) e imprimela como un array
+let countryTwo = [];
+for(const country of allCountries) {
+    for(const word of country) {
+        let arrWords = word.split(' ');
+        if(arrWords.length > 1) {
+            countryTwo.push(country);
+        }
+    }
+}
+console.log(countryTwo);
+
 // 9. Invertir el [array countries](/arrays/countries.js) y poner en mayúscula cada país y almacenalo en un array
+let mayusCountries = [];
+for(const country of allCountries) {
+    mayusCountries.push(country.toUpperCase());
+}
+console.log(mayusCountries);
