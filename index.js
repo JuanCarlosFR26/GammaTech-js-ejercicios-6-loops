@@ -147,18 +147,23 @@ for (let i = 0; i <= 100; i++) {
 }
 
 // 9. Usa el bucle for para iterar de 0 a 100 e imprima los solo números primos
-var texto=2
-  for (let i =3;i<=100;i=i+2){
-    var primo=true;
-    for(let j=3;j<=Math.sqrt(i);j=j+2){
-      if (i%j==0){
-        primo=false;
-        break;
-      }
-    }
-    if (primo) {texto += i + "<br>";}
-  }
-  console.log(texto);
+let tope=100;
+let n=2;
+let primos = "";
+let primo = true;
+for (let i = 1; i <=tope; i += 2) {
+     primo = true;
+       for (n=2; n <= parseInt(Math.sqrt(i)); n++) {
+                 if (i % n === 0 && i !== n){
+                   primo = false;
+              break;
+          }
+     }
+     if (primo === true) {
+            primos += i + " ";
+     }
+}
+console.log(primos)
 
 
 // 10. Usa el bucle for para iterar de 0 a 100 e imprima la suma de todos los números.
