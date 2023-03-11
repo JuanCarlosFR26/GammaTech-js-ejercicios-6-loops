@@ -218,8 +218,9 @@ console.log(arrRand);
 // 14. Desarrolla un pequeño script que genera una matriz de 5 números aleatorios. Los números debe ser únicos
 let arrRand2 = [];
 for(let i = 0; i < 5; i++) {
-    if(!arrRand2.includes(arrRand2[i])) {
-        arrRand2.push(Math.floor(Math.random() * 100));
+    let randNum = Math.floor(Math.random() * 100)
+    if(arrRand2.indexOf(randNum) === -1) {
+        arrRand2.push(randNum);
     }
 }
 console.log(arrRand2);
